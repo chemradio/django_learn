@@ -1,0 +1,14 @@
+{% extends 'shopapp/base.html'%} {% block title %}Shop Index{% endblock %}
+
+{% block body %}
+<div>
+    {% for name, price in products %}
+    <div>
+        {{ name }} for ${{price}}
+        {{ name | length_is:'6'}}
+    </div>
+    {% empty %}
+    No products here
+    {% endfor %}
+</div>
+{% endblock %}
