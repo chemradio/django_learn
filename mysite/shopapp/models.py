@@ -4,7 +4,7 @@ from django.db import models
 
 class Product(models.Model):
     class Meta:
-        ordering = ["-name"]
+        ordering = ["name"]
 
     name = models.CharField(max_length=100)
     description = models.TextField(null=False, blank=True)
@@ -12,6 +12,13 @@ class Product(models.Model):
     discount = models.SmallIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     archived = models.BooleanField(default=False)
+
+    @property
+    def description_short(self) -> str:
+        return self.description[:40] + "..."
+
+    def __str__(self) -> str:
+        return f"Product(pk={self.pk}, name={self.name})"
 
 
 class Order(models.Model):
